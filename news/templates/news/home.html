@@ -1,0 +1,67 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<body>
+	<div class="jumbotron">
+		<h1>News from Ynet</h1>
+		<form method="POST" action="{% url 'news:scrape' %}">
+			{% csrf_token %}
+			<button type="submit" class="btn btn-success">Get news</button>
+		</form>
+	</div>
+<ul class="article">
+	{% for object in object_list %}
+	<li>
+		<div class="card" style="height: 20rem;width: 20rem;border:5px black solid;">
+	  <img class="card-img-top" src = "{{ object.image }}" width="189" height="105.6">
+
+	  <div class="card-body">
+		<h5 class="card-title"><div>
+		  <a href="{{object.url}}"><h5 class="card-title">{{object.title}} <br> {{object.date}}</h5></a>
+
+		</div>
+		</div>
+	  </div>
+	</li>	
+	{% endfor %}
+</ul>
+
+	<script
+	src="http://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+<style>
+	.article {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+	li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+
+{% endblock %}

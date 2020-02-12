@@ -1,0 +1,12 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<form class="form-horizontal" action="signup" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <br />
+    <input type="submit" value="Sign up" class="btn btn-default" />
+</form>
+
+{% endblock %}

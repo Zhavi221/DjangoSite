@@ -1,0 +1,9 @@
+﻿{% if user.is_authenticated %}
+
+{% else %}
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'accounts:signup' %}">Sign Up</a></li>
+</ul>
+
+{% endif %}
