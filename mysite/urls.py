@@ -11,4 +11,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('news/', include('news.urls')),
     path('streams/', include('streams.urls')),
+    path('discordTool/', include('discordTool.urls')),
 ]

@@ -2,6 +2,7 @@ import requests
 from django.shortcuts import render, redirect
 from bs4 import BeautifulSoup as BSoup
 from news.models import Headline
+import time, datetime
 
 requests.packages.urllib3.disable_warnings()
 
@@ -54,22 +55,20 @@ def scrape(request):
 
         new_headline = Headline()
 
-        try:
-            header = soup.find_all('div', {"class":"element B3 ghcite noBottomPadding"})[0]
-            dates = header.find_all('span', {"class":"art_header_footer_author"})
-            print(dates[1].text)
-            new_headline.date = dates.text
-        except:
-            new_headline.date = 'error#'
+
+        ok = "פורסם:"
+        #header = soup.find_all('div', {"class":"element B3 ghcite noBottomPadding"})[0]
+        dates = soup.find_all('span', string=ok)
+        print(dates)
 
 
-
+        new_headline.date = dates[1].text
         new_headline.title = TitlesText[i]
         new_headline.url = link2
         new_headline.image = image_src
-        if (new_headline.date != 'error#'):
-            new_headline.save()
-
+        #if (new_headline.date != 'error#'):
+        #    new_headline.save()
+        new_headline.save()
         i = i + 1
 
 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'news',
     'streams',
+    'discordTool',
 ]
 
 # Middleware framework

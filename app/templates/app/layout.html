@@ -29,6 +29,7 @@
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'news:home'%}">News</a></li>
                         <li><a href="{% url 'streams:choice'%}">Live</a></li>
+                        <li><a href="{% url 'discordTool:home'%}">Discord Tool</a></li>
                     {% endif %}
                 </ul>
                 {% include 'accounts/loginpartial.html' %}
